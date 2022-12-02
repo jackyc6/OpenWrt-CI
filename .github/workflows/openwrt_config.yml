@@ -83,7 +83,7 @@ jobs:
           ./scripts/feeds install -a
       - name: Configuration Customization - Build_Newifi_D2
         env:
-          CONFIG_FILE: 'D2.config'
+          CONFIG_FILE: './D2.config'
         run: |
           #rm -f ./.config*
           #touch ./.config
