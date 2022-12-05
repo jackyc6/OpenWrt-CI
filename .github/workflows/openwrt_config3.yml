@@ -7,7 +7,7 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 #
 
-name: OpenWrt_configD2_2
+name: OpenWrt_configD2_3
 
 on:
   push:
@@ -59,8 +59,8 @@ jobs:
       - name: Download lede
         run: |
           git clone https://github.com/coolsnowwolf/lede
-          cp .config ./lede/.config
-          mv ./lede/* ./
+          cp .config ./openwrt/.config
+          mv ./openwrt/* ./
       - name: Install Helloword
         run: |
           echo "src-git helloworld https://github.com/fw876/helloworld" >> ./feeds.conf.default 
@@ -87,8 +87,8 @@ jobs:
         run: |
           #rm -f ./.config*
           #touch ./.config
-          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./lede/.config
-          chmod +x ./customize.sh && ./customize.sh
+          [ -e $CONFIG_FILE ] && mv $CONFIG_FILE ./openwrt/.config
+          #chmod +x ./customize.sh && ./customize.sh
           make defconfig
 
       - name: Download package source code
@@ -103,6 +103,6 @@ jobs:
       - name : Upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: OpenWrt_firmware_configD2_2
+          name: OpenWrt_firmware_configD2_3
           path: bin/targets/
           
